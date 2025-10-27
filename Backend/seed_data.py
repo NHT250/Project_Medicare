@@ -6,10 +6,10 @@ import bcrypt
 
 # Connect to MongoDB
 # For Local MongoDB:
-# client = MongoClient('mongodb://localhost:27017/')
+client = MongoClient('mongodb://localhost:27017/')
 
 # For MongoDB Atlas (Cloud):
-client = MongoClient('mongodb+srv://cluster1.qncm65j.mongodb.net/')
+# client = MongoClient('mongodb+srv://cluster1.qncm65j.mongodb.net/')
 db = client['medicare']
 
 # Clear existing data
@@ -37,7 +37,7 @@ sample_users = [
     },
     {
         'email': 'admin@medicare.com',
-        'password': bcrypt.hashpw('admin123'.encode('utf Above-mentionedutf-8'), bcrypt.gensalt()).decode('utf-8'),
+        'password': bcrypt.hashpw('admin123'.encode('utf-8'), bcrypt.gensalt()).decode('utf-8'),
         'name': 'Admin User',
         'phone': '0987654321',
         'address': {

@@ -7,9 +7,9 @@ load_dotenv()
 class Config:
     # MongoDB Configuration
     # For Local MongoDB:
-    # MONGODB_URI = 'mongodb://localhost:27017/'
+    MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb://localhost:27017/')
     # For MongoDB Atlas:
-    MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb+srv://cluster1.qncm65j.mongodb.net/')
+    # MONGODB_URI = os.getenv('MONGODB_URI', 'mongodb+srv://cluster1.qncm65j.mongodb.net/')
     DATABASE_NAME = os.getenv('DATABASE_NAME', 'medicare')
     
     # JWT Secret Key
