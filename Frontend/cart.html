@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Shopping Cart - Medicare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar bg-purple text-white py-2">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-3">
+                    <span><i class="fas fa-phone"></i> Hotline: 1800-1234</span>
+                    <span><i class="fas fa-envelope"></i> support@medicare.com</span>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <span>Free shipping on orders over $50</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="homepage.html" class="logo-link">
+                        <div class="logo-icon">
+                            <span>Me</span>
+                        </div>
+                        <h1 style="color: #0066cc;">Medicare</h1>
+                    </a>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="main-nav">
+                    <a href="homepage.html" class="nav-link">Medicines</a>
+                    <a href="categories.html" class="nav-link">Health Products</a>
+                    <a href="orders.html" class="nav-link">My Orders</a>
+                </nav>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" class="form-control search-input" placeholder="Search medicines...">
+                    <button class="btn btn-primary search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <!-- Right Side Actions -->
+                <div class="header-actions">
+                    <div class="cart-icon position-relative" onclick="window.location='cart.html'">
+                        <i class="fas fa-shopping-cart fs-4 text-muted"></i>
+                        <span class="cart-badge">3</span>
+                    </div>
+                    <a href="index.html" class="btn btn-success">Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1 class="page-title">Your Shopping Cart</h1>
+                <p class="page-subtitle">Review your selected medicines before checkout</p>
+            </div>
+
+            <div class="row">
+                <!-- Left Column - Cart Items -->
+                <div class="col-lg-8">
+                    <div class="cart-items-card">
+                        <h3 class="card-title">Cart Items (3)</h3>
+                        
+                        <!-- Cart Item 1 -->
+                        <div class="cart-item">
+                            <div class="item-image">
+                                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                                     alt="Vitamin C 1000mg">
+                            </div>
+                            <div class="item-details">
+                                <h5 class="item-name">Vitamin C 1000mg</h5>
+                                <p class="item-desc">60 Tablets - Immune Support</p>
+                                <span class="item-price">$24.99 per bottle</span>
+                            </div>
+                            <div class="item-quantity">
+                                <button class="quantity-btn" onclick="decreaseQuantity(this)">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" class="quantity-input" value="2" min="1" readonly>
+                                <button class="quantity-btn" onclick="increaseQuantity(this)">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="item-total">
+                                <strong>$49.98</strong>
+                            </div>
+                            <div class="item-delete">
+                                <button class="delete-btn" onclick="removeItem(this)">
+                                    <i class="fas fa-trash text-danger"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Cart Item 2 -->
+                        <div class="cart-item">
+                            <div class="item-image">
+                                <img src="https://images.unsplash.com/photo-1550572017-edd951aa0b0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                                     alt="Omega-3 Fish Oil">
+                            </div>
+                            <div class="item-details">
+                                <h5 class="item-name">Omega-3 Fish Oil</h5>
+                                <p class="item-desc">120 Softgels - Heart Health</p>
+                                <span class="item-price">$32.99 per bottle</span>
+                            </div>
+                            <div class="item-quantity">
+                                <button class="quantity-btn" onclick="decreaseQuantity(this)">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" class="quantity-input" value="1" min="1" readonly>
+                                <button class="quantity-btn" onclick="increaseQuantity(this)">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="item-total">
+                                <strong>$32.99</strong>
+                            </div>
+                            <div class="item-delete">
+                                <button class="delete-btn" onclick="removeItem(this)">
+                                    <i class="fas fa-trash text-danger"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Cart Item 3 -->
+                        <div class="cart-item">
+                            <div class="item-image">
+                                <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                                     alt="Daily Multivitamin">
+                            </div>
+                            <div class="item-details">
+                                <h5 class="item-name">Daily Multivitamin</h5>
+                                <p class="item-desc">90 Tablets - Complete Nutrition</p>
+                                <span class="item-price">$19.99 per bottle</span>
+                            </div>
+                            <div class="item-quantity">
+                                <button class="quantity-btn" onclick="decreaseQuantity(this)">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" class="quantity-input" value="1" min="1" readonly>
+                                <button class="quantity-btn" onclick="increaseQuantity(this)">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="item-total">
+                                <strong>$19.99</strong>
+                            </div>
+                            <div class="item-delete">
+                                <button class="delete-btn" onclick="removeItem(this)">
+                                    <i class="fas fa-trash text-danger"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Order Summary -->
+                <div class="col-lg-4">
+                    <div class="order-summary-card">
+                        <h3 class="card-title">Order Summary</h3>
+                        
+                        <div class="order-details">
+                            <div class="detail-row">
+                                <span>Subtotal (4 items)</span>
+                                <span class="detail-value">$102.96</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Shipping</span>
+                                <span class="detail-value text-success">FREE</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Tax</span>
+                                <span class="detail-value">$8.24</span>
+                            </div>
+                            <div class="detail-row total-row">
+                                <span><strong>Total</strong></span>
+                                <span class="detail-value"><strong>$111.20</strong></span>
+                            </div>
+                        </div>
+
+                        <div class="promo-section">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Promo code">
+                                <button class="btn btn-primary">Apply</button>
+                            </div>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn btn-success btn-checkout" onclick="proceedToCheckout()">
+                                <i class="fas fa-lock me-2"></i>Proceed to Checkout
+                            </button>
+                            <button class="btn btn-outline-primary btn-continue" onclick="continueShopping()">
+                                Continue Shopping
+                            </button>
+                        </div>
+
+                        <div class="security-note">
+                            <i class="fas fa-shield-alt text-success me-2"></i>
+                            Secure checkout with SSL encryption
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-light py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-primary mb-3">Medicare</h5>
+                    <p class="text-light mb-3">
+                        Your trusted online pharmacy for all your healthcare needs.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon me-2"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3 text-white">Customer Support</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">FAQs</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Returns & Refunds</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Shipping Info</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3 text-white">Contact Info</h5>
+                    <div class="contact-item mb-2">
+                        <i class="fas fa-phone text-primary me-2"></i>
+                        <span class="text-light">+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-item mb-2">
+                        <i class="fas fa-envelope text-primary me-2"></i>
+                        <span class="text-light">support@medicare.com</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3 text-white">Payment Methods</h5>
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa fa-2x me-2 text-light"></i>
+                        <i class="fab fa-cc-mastercard fa-2x me-2 text-light"></i>
+                        <i class="fab fa-cc-paypal fa-2x me-2 text-light"></i>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255, 255, 255, 0.2);">
+            <div class="text-center">
+                <p class="text-light mb-0">&copy; 2024 Medicare. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>
+

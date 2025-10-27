@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paracetamol 500mg Tablets - Medicare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="product-detail.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="homepage.html" class="logo-link">
+                        <div class="logo-icon">
+                            <span>Me</span>
+                        </div>
+                        <h1 style="color: #0066cc;">Medicare</h1>
+                    </a>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <div class="input-group">
+                        <input type="text" class="form-control search-input" placeholder="Search medicines, health products...">
+                        <button class="btn btn-primary search-btn" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Side Actions -->
+                <div class="header-actions">
+                    <div class="cart-icon position-relative">
+                        <i class="fas fa-shopping-cart fs-4 text-muted"></i>
+                        <span class="cart-badge">3</span>
+                    </div>
+                    <a href="index.html" class="btn btn-success">Login</a>
+                    <a href="index.html" class="btn btn-outline-primary">Register</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumb-nav">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="homepage.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="categories.html">Medicines</a></li>
+                <li class="breadcrumb-item active">Paracetamol 500mg</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="row">
+                <!-- Product Images -->
+                <div class="col-lg-6">
+                    <div class="product-images">
+                        <div class="main-image">
+                            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Paracetamol 500mg Tablets" class="img-fluid" id="mainProductImage">
+                            <div class="image-zoom-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <div class="thumbnail-images">
+                            <div class="thumbnail active" onclick="changeMainImage(this)">
+                                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                                     alt="Paracetamol Front">
+                            </div>
+                            <div class="thumbnail" onclick="changeMainImage(this)">
+                                <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                                     alt="Paracetamol Back">
+                            </div>
+                            <div class="thumbnail" onclick="changeMainImage(this)">
+                                <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                                     alt="Paracetamol Package">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="col-lg-6">
+                    <div class="product-info">
+                        <h1 class="product-title">Paracetamol 500mg Tablets</h1>
+                        <p class="product-subtitle">Pain relief and fever reducer</p>
+                        
+                        <div class="rating-section">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="rating-text">4.5 (127 reviews)</span>
+                        </div>
+
+                        <div class="price-section">
+                            <div class="current-price">$12.99</div>
+                            <div class="old-price">$15.99</div>
+                            <div class="discount-badge">18% OFF</div>
+                        </div>
+
+                        <div class="stock-status">
+                            <i class="fas fa-check-circle text-success"></i>
+                            <span>In Stock - Ready for dispatch</span>
+                        </div>
+
+                        <div class="quantity-section">
+                            <label for="quantity">Quantity:</label>
+                            <div class="quantity-controls">
+                                <button class="btn btn-outline-secondary quantity-btn" onclick="decreaseQuantity()">-</button>
+                                <input type="number" id="quantity" class="form-control quantity-input" value="1" min="1" max="10">
+                                <button class="btn btn-outline-secondary quantity-btn" onclick="increaseQuantity()">+</button>
+                            </div>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn btn-success btn-lg add-to-cart-btn" onclick="addToCart()">
+                                <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                            </button>
+                            <button class="btn btn-primary btn-lg buy-now-btn" onclick="buyNow()">
+                                <i class="fas fa-bolt me-2"></i>Buy Now
+                            </button>
+                        </div>
+
+                        <div class="product-features">
+                            <div class="feature-item">
+                                <i class="fas fa-truck text-success"></i>
+                                <span>Free shipping on orders over $50</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-shield-alt text-primary"></i>
+                                <span>100% authentic medicines</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Details Tabs -->
+            <div class="product-details-section">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="nav nav-tabs product-tabs" id="productTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="description-tab" data-bs-toggle="tab" 
+                                        data-bs-target="#description" type="button" role="tab">
+                                    Description
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="ingredients-tab" data-bs-toggle="tab" 
+                                        data-bs-target="#ingredients" type="button" role="tab">
+                                    Ingredients
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="usage-tab" data-bs-toggle="tab" 
+                                        data-bs-target="#usage" type="button" role="tab">
+                                    Usage Instructions
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="side-effects-tab" data-bs-toggle="tab" 
+                                        data-bs-target="#side-effects" type="button" role="tab">
+                                    Side Effects
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="warnings-tab" data-bs-toggle="tab" 
+                                        data-bs-target="#warnings" type="button" role="tab">
+                                    Warnings
+                                </button>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="productTabsContent">
+                            <div class="tab-pane fade show active" id="description" role="tabpanel">
+                                <div class="tab-content-body">
+                                    <h4>Product Description</h4>
+                                    <p>Paracetamol 500mg tablets are effective pain relievers and fever reducers. This medication is commonly used to treat mild to moderate pain including headache, toothache, muscle aches, and menstrual cramps. It also helps reduce fever associated with common cold and flu.</p>
+                                    <p>Each tablet contains 500mg of paracetamol (acetaminophen) as the active ingredient. This pack contains 24 tablets, providing reliable relief when you need it most.</p>
+                                    <ul>
+                                        <li>Fast-acting pain relief</li>
+                                        <li>Fever reduction</li>
+                                        <li>Gentle on stomach</li>
+                                        <li>Non-prescription medication</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="ingredients" role="tabpanel">
+                                <div class="tab-content-body">
+                                    <h4>Active Ingredients</h4>
+                                    <p><strong>Paracetamol (Acetaminophen):</strong> 500mg per tablet</p>
+                                    <h4>Inactive Ingredients</h4>
+                                    <ul>
+                                        <li>Microcrystalline Cellulose</li>
+                                        <li>Pregelatinized Starch</li>
+                                        <li>Stearic Acid</li>
+                                        <li>Magnesium Stearate</li>
+                                        <li>Colloidal Silicon Dioxide</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="usage" role="tabpanel">
+                                <div class="tab-content-body">
+                                    <h4>Dosage Instructions</h4>
+                                    <p><strong>Adults and children 12 years and over:</strong></p>
+                                    <ul>
+                                        <li>Take 1-2 tablets every 4-6 hours as needed</li>
+                                        <li>Do not exceed 8 tablets in 24 hours</li>
+                                        <li>Take with water</li>
+                                        <li>Do not take for more than 10 days unless directed by a doctor</li>
+                                    </ul>
+                                    <p><strong>Children under 12 years:</strong> Consult a doctor before use</p>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="side-effects" role="tabpanel">
+                                <div class="tab-content-body">
+                                    <h4>Possible Side Effects</h4>
+                                    <p>When taken as directed, paracetamol rarely causes side effects. However, some people may experience:</p>
+                                    <ul>
+                                        <li>Allergic reactions (rare)</li>
+                                        <li>Skin rash or itching</li>
+                                        <li>Nausea or vomiting</li>
+                                        <li>Liver problems (with overdose)</li>
+                                    </ul>
+                                    <p><strong>Stop use and consult a doctor if you experience any unusual symptoms.</strong></p>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="warnings" role="tabpanel">
+                                <div class="tab-content-body">
+                                    <h4>Important Warnings</h4>
+                                    <ul>
+                                        <li>Do not exceed the recommended dose</li>
+                                        <li>Do not take with other paracetamol-containing products</li>
+                                        <li>Consult a doctor if you have liver disease</li>
+                                        <li>Do not use if you are allergic to paracetamol</li>
+                                        <li>Keep out of reach of children</li>
+                                        <li>Store at room temperature</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Products -->
+            <div class="related-products-section">
+                <h3 class="section-title">You may also like</h3>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="related-product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1550572017-edd951aa0b0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                                     alt="Ibuprofen 200mg" class="img-fluid">
+                            </div>
+                            <div class="product-info">
+                                <h6 class="product-name">Ibuprofen 200mg</h6>
+                                <div class="price">$8.99</div>
+                                <button class="btn btn-success btn-sm">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="related-product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                                     alt="Aspirin 325mg" class="img-fluid">
+                            </div>
+                            <div class="product-info">
+                                <h6 class="product-name">Aspirin 325mg</h6>
+                                <div class="price">$6.99</div>
+                                <button class="btn btn-success btn-sm">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="related-product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                                     alt="Vitamin C 1000mg" class="img-fluid">
+                            </div>
+                            <div class="product-info">
+                                <h6 class="product-name">Vitamin C 1000mg</h6>
+                                <div class="price">$15.99</div>
+                                <button class="btn btn-success btn-sm">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="related-product-card">
+                            <div class="product-image">
+                                <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" 
+                                     alt="Daily Multivitamin" class="img-fluid">
+                            </div>
+                            <div class="product-info">
+                                <h6 class="product-name">Daily Multivitamin</h6>
+                                <div class="price">$22.99</div>
+                                <button class="btn btn-success btn-sm">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-light py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-primary mb-3">Medicare</h5>
+                    <p class="text-light mb-3">
+                        Your trusted online pharmacy for all your healthcare needs. Quality medicines, expert advice, fast delivery.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon me-2"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3 text-white">About Us</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Our Story</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Mission & Vision</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Careers</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Press</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3 text-white">Customer Support</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">FAQs</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Returns & Refunds</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Shipping Info</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3 text-white">Contact Info</h5>
+                    <div class="contact-item mb-2">
+                        <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                        <span class="text-light">123 Healthcare St, Medical City, MC 12345</span>
+                    </div>
+                    <div class="contact-item mb-2">
+                        <i class="fas fa-phone text-primary me-2"></i>
+                        <span class="text-light">+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-item mb-2">
+                        <i class="fas fa-envelope text-primary me-2"></i>
+                        <span class="text-light">support@medicare.com</span>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255, 255, 255, 0.2);">
+            <div class="text-center">
+                <p class="text-light mb-0">&copy; 2024 Medicare. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="product-detail.js"></script>
+</body>
+</html>
+

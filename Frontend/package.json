@@ -1,0 +1,38 @@
+{
+  "name": "medicare-auth",
+  "version": "1.0.0",
+  "description": "Trang đăng nhập và đăng ký cho hệ thống Medicare với CAPTCHA",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server . -p 3000 -o",
+    "dev": "npx live-server --port=3000 --open=/index.html",
+    "build": "echo 'No build process needed for static files'",
+    "test": "echo 'No tests specified'"
+  },
+  "keywords": [
+    "medicare",
+    "authentication",
+    "login",
+    "register",
+    "captcha",
+    "healthcare"
+  ],
+  "author": "Medicare Team",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/medicare/medicare-auth.git"
+  },
+  "bugs": {
+    "url": "https://github.com/medicare/medicare-auth/issues"
+  },
+  "homepage": "https://github.com/medicare/medicare-auth#readme"
+}
+
+
+

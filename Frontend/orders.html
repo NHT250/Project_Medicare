@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - Medicare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="orders.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="homepage.html" class="logo-link">
+                        <div class="logo-icon">
+                            <span>Me</span>
+                        </div>
+                        <h1>Medicare</h1>
+                    </a>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="main-nav">
+                    <a href="homepage.html" class="nav-link">Medicines</a>
+                    <a href="categories.html" class="nav-link">Health Products</a>
+                    <a href="orders.html" class="nav-link active">My Orders</a>
+                </nav>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" class="form-control search-input" placeholder="Search medicines...">
+                    <button class="btn btn-primary search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <!-- Right Side Actions -->
+                <div class="header-actions">
+                    <div class="cart-icon position-relative" onclick="window.location.href='cart.html'">
+                        <i class="fas fa-shopping-cart fs-4 text-muted"></i>
+                        <span class="cart-badge">3</span>
+                    </div>
+                    <a href="index.html" class="btn btn-success">Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1 class="page-title">My Orders</h1>
+                <p class="page-subtitle">View your previous orders and track their delivery status</p>
+            </div>
+
+            <!-- Filter and Search Section -->
+            <div class="filter-section">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="filter-buttons">
+                            <label class="filter-label">Filter by status:</label>
+                            <div class="status-buttons">
+                                <button class="btn btn-primary active" data-status="all">All</button>
+                                <button class="btn btn-outline-secondary" data-status="pending">Pending</button>
+                                <button class="btn btn-outline-secondary" data-status="confirmed">Confirmed</button>
+                                <button class="btn btn-outline-secondary" data-status="shipped">Shipped</button>
+                                <button class="btn btn-outline-secondary" data-status="completed">Completed</button>
+                                <button class="btn btn-outline-secondary" data-status="cancelled">Cancelled</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="search-box">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" class="form-control search-input-field" 
+                                   placeholder="Search by Order ID or Date" id="orderSearch">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Table -->
+            <div class="orders-table">
+                <div class="table-header">
+                    <div class="col-order-id">Order ID</div>
+                    <div class="col-date">Date</div>
+                    <div class="col-total">Total Amount</div>
+                    <div class="col-payment">Payment</div>
+                    <div class="col-status">Status</div>
+                    <div class="col-action">Action</div>
+                </div>
+
+                <!-- Order Items -->
+                <div class="order-item completed">
+                    <div class="col-order-id">
+                        <span class="order-id-text">#ORD2025001</span>
+                    </div>
+                    <div class="col-date">
+                        <span>15 Dec 2024</span>
+                    </div>
+                    <div class="col-total">
+                        <strong>$89.50</strong>
+                    </div>
+                    <div class="col-payment">
+                        <i class="fab fa-cc-paypal me-2"></i>
+                        <span>VNPay</span>
+                    </div>
+                    <div class="col-status">
+                        <span class="badge badge-completed">Completed</span>
+                    </div>
+                    <div class="col-action">
+                        <button class="btn btn-primary btn-sm" onclick="viewOrderDetails('ORD2025001')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <div class="order-item shipped">
+                    <div class="col-order-id">
+                        <span class="order-id-text">#ORD2025002</span>
+                    </div>
+                    <div class="col-date">
+                        <span>18 Dec 2024</span>
+                    </div>
+                    <div class="col-total">
+                        <strong>$45.90</strong>
+                    </div>
+                    <div class="col-payment">
+                        <i class="fas fa-mobile-alt me-2"></i>
+                        <span>MoMo</span>
+                    </div>
+                    <div class="col-status">
+                        <span class="badge badge-shipped">Shipped</span>
+                    </div>
+                    <div class="col-action">
+                        <button class="btn btn-primary btn-sm" onclick="viewOrderDetails('ORD2025002')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <div class="order-item confirmed">
+                    <div class="col-order-id">
+                        <span class="order-id-text">#ORD2025003</span>
+                    </div>
+                    <div class="col-date">
+                        <span>20 Dec 2024</span>
+                    </div>
+                    <div class="col-total">
+                        <strong>$32.75</strong>
+                    </div>
+                    <div class="col-payment">
+                        <i class="fas fa-money-bill-wave me-2"></i>
+                        <span>COD</span>
+                    </div>
+                    <div class="col-status">
+                        <span class="badge badge-confirmed">Confirmed</span>
+                    </div>
+                    <div class="col-action">
+                        <button class="btn btn-primary btn-sm" onclick="viewOrderDetails('ORD2025003')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <div class="order-item pending">
+                    <div class="col-order-id">
+                        <span class="order-id-text">#ORD2025004</span>
+                    </div>
+                    <div class="col-date">
+                        <span>22 Dec 2024</span>
+                    </div>
+                    <div class="col-total">
+                        <strong>$67.20</strong>
+                    </div>
+                    <div class="col-payment">
+                        <i class="fas fa-qrcode me-2"></i>
+                        <span>ZaloPay</span>
+                    </div>
+                    <div class="col-status">
+                        <span class="badge badge-pending">Pending</span>
+                    </div>
+                    <div class="col-action">
+                        <button class="btn btn-primary btn-sm" onclick="viewOrderDetails('ORD2025004')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <div class="order-item completed">
+                    <div class="col-order-id">
+                        <span class="order-id-text">#ORD2025005</span>
+                    </div>
+                    <div class="col-date">
+                        <span>25 Dec 2024</span>
+                    </div>
+                    <div class="col-total">
+                        <strong>$122.45</strong>
+                    </div>
+                    <div class="col-payment">
+                        <i class="fas fa-mobile-alt me-2"></i>
+                        <span>MoMo</span>
+                    </div>
+                    <div class="col-status">
+                        <span class="badge badge-completed">Completed</span>
+                    </div>
+                    <div class="col-action">
+                        <button class="btn btn-primary btn-sm" onclick="viewOrderDetails('ORD2025005')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <div class="order-item cancelled">
+                    <div class="col-order-id">
+                        <span class="order-id-text">#ORD2025006</span>
+                    </div>
+                    <div class="col-date">
+                        <span>28 Dec 2024</span>
+                    </div>
+                    <div class="col-total">
+                        <strong>$89.00</strong>
+                    </div>
+                    <div class="col-payment">
+                        <i class="fas fa-money-bill-wave me-2"></i>
+                        <span>COD</span>
+                    </div>
+                    <div class="col-status">
+                        <span class="badge badge-cancelled">Cancelled</span>
+                    </div>
+                    <div class="col-action">
+                        <button class="btn btn-primary btn-sm" onclick="viewOrderDetails('ORD2025006')">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-light py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 Medicare. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="orders.js"></script>
+</body>
+</html>
+

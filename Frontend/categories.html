@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Medicines - Medicare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="categories.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand fw-bold text-primary fs-3" href="homepage.html">
+                Medicare
+            </a>
+
+            <!-- Search Bar -->
+            <div class="search-container mx-auto">
+                <div class="input-group">
+                    <input type="text" class="form-control search-input" placeholder="Search medicines...">
+                    <button class="btn btn-primary search-btn" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Side Buttons -->
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-outline-secondary position-relative">
+                    <i class="fas fa-heart"></i>
+                </button>
+                <div class="cart-icon position-relative" onclick="window.location.href='cart.html'" style="cursor: pointer;">
+                    <i class="fas fa-shopping-cart fs-4 text-muted"></i>
+                    <span class="cart-badge">3</span>
+                </div>
+                <a href="index.html" class="btn btn-success">Login</a>
+                <a href="index.html" class="btn btn-outline-primary">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 col-md-4 sidebar">
+                    <div class="sidebar-content">
+                        <!-- Categories Filter -->
+                        <div class="filter-section">
+                            <h5 class="filter-title">Categories</h5>
+                            <div class="category-list">
+                                <div class="category-item active" data-category="all">
+                                    <i class="fas fa-pills"></i>
+                                    <span>All Categories</span>
+                                    <span class="category-count">96</span>
+                                </div>
+                                <div class="category-item" data-category="pain-relief">
+                                    <i class="fas fa-pills"></i>
+                                    <span>Pain Relief</span>
+                                    <span class="category-count">24</span>
+                                </div>
+                                <div class="category-item" data-category="vitamins">
+                                    <i class="fas fa-leaf"></i>
+                                    <span>Vitamins</span>
+                                    <span class="category-count">18</span>
+                                </div>
+                                <div class="category-item" data-category="skin-care">
+                                    <i class="fas fa-hand-sparkles"></i>
+                                    <span>Skin Care</span>
+                                    <span class="category-count">12</span>
+                                </div>
+                                <div class="category-item" data-category="heart-health">
+                                    <i class="fas fa-heartbeat"></i>
+                                    <span>Heart Health</span>
+                                    <span class="category-count">15</span>
+                                </div>
+                                <div class="category-item" data-category="mental-health">
+                                    <i class="fas fa-brain"></i>
+                                    <span>Mental Health</span>
+                                    <span class="category-count">9</span>
+                                </div>
+                                <div class="category-item" data-category="eye-care">
+                                    <i class="fas fa-eye"></i>
+                                    <span>Eye Care</span>
+                                    <span class="category-count">7</span>
+                                </div>
+                                <div class="category-item" data-category="respiratory">
+                                    <i class="fas fa-lungs"></i>
+                                    <span>Respiratory</span>
+                                    <span class="category-count">11</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Price Range Filter -->
+                        <div class="filter-section">
+                            <h5 class="filter-title">Price Range</h5>
+                            <div class="price-range-list">
+                                <div class="price-item">
+                                    <input type="checkbox" id="under-10" class="price-checkbox" data-price="under-10">
+                                    <label for="under-10">Under $10</label>
+                                </div>
+                                <div class="price-item">
+                                    <input type="checkbox" id="10-25" class="price-checkbox" data-price="10-25">
+                                    <label for="10-25">$10 - $25</label>
+                                </div>
+                                <div class="price-item">
+                                    <input type="checkbox" id="25-50" class="price-checkbox" data-price="25-50">
+                                    <label for="25-50">$25 - $50</label>
+                                </div>
+                                <div class="price-item">
+                                    <input type="checkbox" id="over-50" class="price-checkbox" data-price="over-50">
+                                    <label for="over-50">Over $50</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Clear Filters Button -->
+                        <button class="btn btn-outline-secondary w-100 mt-3" onclick="clearFilters()">
+                            <i class="fas fa-times"></i> Clear Filters
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Products Area -->
+                <div class="col-lg-9 col-md-8">
+                    <div class="products-container">
+                        <!-- Page Header -->
+                        <div class="page-header mb-4">
+                            <h1 class="page-title">All Medicines</h1>
+                            <p class="page-subtitle">Browse and find the right medicine for you</p>
+                        </div>
+
+                        <!-- Filter and Sort Bar -->
+                        <div class="filter-sort-bar mb-4">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <div class="filter-dropdowns">
+                                        <select class="form-select me-2" id="categoryFilter">
+                                            <option value="all">All Categories</option>
+                                            <option value="pain-relief">Pain Relief</option>
+                                            <option value="vitamins">Vitamins</option>
+                                            <option value="skin-care">Skin Care</option>
+                                            <option value="heart-health">Heart Health</option>
+                                            <option value="mental-health">Mental Health</option>
+                                            <option value="eye-care">Eye Care</option>
+                                            <option value="respiratory">Respiratory</option>
+                                        </select>
+                                        <select class="form-select me-2" id="purposeFilter">
+                                            <option value="all">All Purposes</option>
+                                            <option value="pain">Pain Relief</option>
+                                            <option value="vitamin">Vitamin Supplement</option>
+                                            <option value="skin">Skin Treatment</option>
+                                            <option value="heart">Heart Health</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex justify-content-md-end align-items-center">
+                                        <span class="results-count me-3" id="resultsCount">96 products found</span>
+                                        <select class="form-select" id="sortFilter">
+                                            <option value="popularity">Sort by Popularity</option>
+                                            <option value="price-low">Price: Low to High</option>
+                                            <option value="price-high">Price: High to Low</option>
+                                            <option value="name">Name A-Z</option>
+                                            <option value="rating">Highest Rated</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Products Grid -->
+                        <div class="products-grid" id="productsGrid">
+                            <!-- Sample products for demonstration -->
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                                             alt="Paracetamol 500mg" class="img-fluid">
+                                        <div class="discount-badge">-20%</div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h6 class="product-name">Paracetamol 500mg</h6>
+                                        <p class="product-desc">Pain relief tablets</p>
+                                        <div class="price-section">
+                                            <span class="current-price">$12.99</span>
+                                            <span class="old-price">$15.99</span>
+                                        </div>
+                                        <div class="rating mb-2">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <span class="rating-text">4.8</span>
+                                        </div>
+                                        <a href="product-detail.html" class="btn btn-success w-100">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="https://images.unsplash.com/photo-1550572017-edd951aa0b0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                                             alt="Vitamin D3" class="img-fluid">
+                                    </div>
+                                    <div class="product-info">
+                                        <h6 class="product-name">Vitamin D3 1000IU</h6>
+                                        <p class="product-desc">Bone health supplement</p>
+                                        <div class="price-section">
+                                            <span class="current-price">$24.99</span>
+                                        </div>
+                                        <div class="rating mb-2">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <span class="rating-text">4.6</span>
+                                        </div>
+                                        <a href="product-detail.html" class="btn btn-success w-100">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" 
+                                             alt="Omega-3 Fish Oil" class="img-fluid">
+                                        <div class="new-badge">New</div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h6 class="product-name">Omega-3 Fish Oil</h6>
+                                        <p class="product-desc">Heart health capsules</p>
+                                        <div class="price-section">
+                                            <span class="current-price">$32.99</span>
+                                        </div>
+                                        <div class="rating mb-2">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <span class="rating-text">4.9</span>
+                                        </div>
+                                        <a href="product-detail.html" class="btn btn-success w-100">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pagination -->
+                        <nav aria-label="Products pagination" class="mt-5">
+                            <ul class="pagination justify-content-center" id="pagination">
+                                <!-- Pagination will be generated by JavaScript -->
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-light py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Medicare Column -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-primary mb-3">Medicare</h5>
+                    <p class="text-light mb-3">
+                        Your trusted online pharmacy for all your healthcare needs. Quality medicines, expert advice, fast delivery.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon me-2"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- About Us Column -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3 text-white">About Us</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Our Story</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Mission & Vision</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Careers</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Press</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Support Column -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3 text-white">Customer Support</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">FAQs</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Returns & Refunds</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Shipping Info</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Track Order</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info Column -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3 text-white">Contact Info</h5>
+                    <div class="contact-item mb-2">
+                        <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                        <span class="text-light">123 Healthcare St, Medical City, MC 12345</span>
+                    </div>
+                    <div class="contact-item mb-2">
+                        <i class="fas fa-phone text-primary me-2"></i>
+                        <span class="text-light">+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-item mb-2">
+                        <i class="fas fa-envelope text-primary me-2"></i>
+                        <span class="text-light">support@medicare.com</span>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-4" style="border-color: rgba(255, 255, 255, 0.2);">
+            <div class="text-center">
+                <p class="text-light mb-0">&copy; 2024 Medicare. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="categories.js"></script>
+</body>
+</html>
+
