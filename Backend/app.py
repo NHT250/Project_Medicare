@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 from config import Config
 from bson import ObjectId
 import json
+import requests
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -27,6 +28,23 @@ def serialize_doc(doc):
     if isinstance(doc, dict):
         doc['_id'] = str(doc['_id'])
     return doc
+
+# Helper function to verify reCAPTCHA
+def verify_recaptcha(recaptcha_token):
+    try:
+        response = requests.post(
+            'https://www.google.com/recaptcha/api/siteverify',
+            data={
+                'secret': Config.RECAPTCHA_SECRET_KEY,
+                'response': recaptcha_token
+            },
+            timeout=5
+        )
+        result = response.json()
+        return result.get('success', False)
+    except Exception as e:
+        print(f'reCAPTCHA verification error: {str(e)}')
+        return False
 
 # ============ ROUTES ============
 
@@ -50,6 +68,11 @@ def index():
 def register():
     try:
         data = request.json
+        
+        # Verify reCAPTCHA
+        recaptcha_token = data.get('recaptcha_token')
+        if not recaptcha_token or not verify_recaptcha(recaptcha_token):
+            return jsonify({'error': 'reCAPTCHA verification failed'}), 400
         
         # Check if user exists
         if db.users.find_one({'email': data['email']}):
@@ -82,6 +105,11 @@ def register():
 def login():
     try:
         data = request.json
+        
+        # Verify reCAPTCHA
+        recaptcha_token = data.get('recaptcha_token')
+        if not recaptcha_token or not verify_recaptcha(recaptcha_token):
+            return jsonify({'error': 'reCAPTCHA verification failed'}), 400
         
         # Find user
         user = db.users.find_one({'email': data['email']})
@@ -274,7 +302,7 @@ def create_order():
 # ============ RUN SERVER ============
 
 if __name__ == '__main__':
-    print('🚀 Starting Medicare API Server...')
-    print(f'📍 MongoDB: {Config.MONGODB_URI}{Config.DATABASE_NAME}')
+    print('Starting Medicare API Server...')
+    print(f'MongoDB: {Config.MONGODB_URI}{Config.DATABASE_NAME}')
     app.run(debug=Config.DEBUG, host=Config.HOST, port=Config.PORT)
 

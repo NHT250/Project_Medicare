@@ -17,6 +17,9 @@ class Config:
     JWT_ALGORITHM = 'HS256'
     JWT_EXPIRATION_DELTA = 86400  # 24 hours
     
+    # reCAPTCHA Configuration
+    RECAPTCHA_SECRET_KEY = os.getenv('RECAPTCHA_SECRET_KEY', '6LfGbvwrAAAAADdlE7GTi5LekEyGKzde4J6_L2-z')
+    
     # Flask Configuration
     DEBUG = os.getenv('FLASK_DEBUG', 'True') == 'True'
     HOST = os.getenv('FLASK_HOST', '0.0.0.0')

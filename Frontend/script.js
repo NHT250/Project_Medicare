@@ -212,20 +212,17 @@ function validateRegisterForm(formData) {
 
 // CAPTCHA validation
 function validateCaptcha() {
-  // Bỏ qua CAPTCHA khi chạy localhost (dev environment)
-  if (
-    window.location.hostname === "localhost" ||
-    window.location.hostname === "127.0.0.1"
-  ) {
-    console.log("Bypassing CAPTCHA for localhost...");
-    return true;
+  if (!window.grecaptcha) {
+    alert("CAPTCHA chưa sẵn sàng, vui lòng thử lại.");
+    return false;
   }
 
   const captchaResponse = grecaptcha.getResponse();
   if (captchaResponse.length === 0) {
-    alert("Please complete the CAPTCHA verification");
+    alert("Vui lòng hoàn tất xác minh CAPTCHA.");
     return false;
   }
+
   return true;
 }
 
@@ -247,10 +244,14 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      // Validate CAPTCHA
+      // Validate CAPTCHA and get token
       if (!validateCaptcha()) {
         return;
       }
+
+      // Get reCAPTCHA token
+      const recaptchaToken = grecaptcha.getResponse();
+      formData.recaptcha_token = recaptchaToken;
 
       // Show loading state
       const submitBtn = this.querySelector(".submit-btn");
@@ -258,24 +259,43 @@ document.addEventListener("DOMContentLoaded", function () {
       submitBtn.textContent = "Logging in...";
       submitBtn.disabled = true;
 
-      // Simulate API call
-      setTimeout(() => {
-        // Save user session
-        setUserSession({
-          email: formData.email,
-          loginTime: new Date().toISOString(),
+      // Make API call to backend
+      fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.token) {
+            // Save user session
+            setUserSession({
+              email: formData.email,
+              loginTime: new Date().toISOString(),
+              token: data.token,
+            });
+
+            alert("Login successful! Redirecting to homepage...");
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+            grecaptcha.reset();
+
+            // Redirect to homepage after successful login
+            setTimeout(() => {
+              window.location.href = "homepage.html";
+            }, 1000);
+          } else {
+            throw new Error(data.error || "Login failed");
+          }
+        })
+        .catch((error) => {
+          alert(error.message || "Login failed. Please try again.");
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+          grecaptcha.reset();
         });
-
-        alert("Login successful! Redirecting to homepage...");
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-        grecaptcha.reset();
-
-        // Redirect to homepage after successful login
-        setTimeout(() => {
-          window.location.href = "homepage.html";
-        }, 1000);
-      }, 2000);
     });
 
   // Register form submission
@@ -297,10 +317,14 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      // Validate CAPTCHA
+      // Validate CAPTCHA and get token
       if (!validateCaptcha()) {
         return;
       }
+
+      // Get reCAPTCHA token
+      const recaptchaToken = grecaptcha.getResponse();
+      formData.recaptcha_token = recaptchaToken;
 
       // Show loading state
       const submitBtn = this.querySelector(".submit-btn");
@@ -308,20 +332,44 @@ document.addEventListener("DOMContentLoaded", function () {
       submitBtn.textContent = "Creating account...";
       submitBtn.disabled = true;
 
-      // Simulate API call
-      setTimeout(() => {
-        alert(
-          "Registration successful! Please check your email for verification. Redirecting to homepage..."
-        );
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-        grecaptcha.reset();
+      // Make API call to backend
+      fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          password: formData.password,
+          recaptcha_token: recaptchaToken,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.message === "User created successfully") {
+            alert(
+              "Registration successful! Please check your email for verification. Redirecting to homepage..."
+            );
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+            grecaptcha.reset();
 
-        // Redirect to homepage after successful registration
-        setTimeout(() => {
-          window.location.href = "homepage.html";
-        }, 1000);
-      }, 2000);
+            // Redirect to homepage after successful registration
+            setTimeout(() => {
+              window.location.href = "homepage.html";
+            }, 1000);
+          } else {
+            throw new Error(data.error || "Registration failed");
+          }
+        })
+        .catch((error) => {
+          alert(error.message || "Registration failed. Please try again.");
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+          grecaptcha.reset();
+        });
     });
 
   // Real-time validation for register form
